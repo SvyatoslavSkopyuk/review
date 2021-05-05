@@ -1,12 +1,8 @@
 import ciphers
 import graph
 
-
-while True:
-    usr_i = ciphers.get_args()
-    if usr_i[0].lower() == 'quit':
-        break
-    if usr_i[0].lower() == 'app':
-        graph.window.mainloop()
-        continue
+usr_i = ciphers.get_args()
+if usr_i.cipher_type_or_app.lower() == 'app':
+    graph.window.mainloop()
+else:
     print(ciphers.res(usr_i))

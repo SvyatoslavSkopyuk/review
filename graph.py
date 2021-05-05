@@ -10,29 +10,29 @@ letters_len = len(letters)
 # Шифр Цезаря(шифровка/расшифровка)
 def to_Caesar_en():
     usage = combo1.get().lower()
-    strk = txt1.get(1.0, tkinter.END).lower()
+    input_text = txt1.get(1.0, tkinter.END).lower()
     try:
-        stepp = int(step1.get())
+        step = int(step1.get())
     except:
         tkinter.messagebox.showerror('Error', 'Wrong input')
         return
     if usage == 'Расшифровать':
-        stepp *= -1
+        step *= -1
     global letters
     global letters_len
-    new_strk = ''
-    for i in strk:
-        if i not in letters:
-            new_strk += i
+    output_text = ''
+    for letter in input_text:
+        if letter not in letters:
+            output_text += letter
         else:
-            new_strk += letters[(letters.find(i) + stepp) % letters_len]
-    tkinter.messagebox.showinfo('Result', new_strk)
+            output_text += letters[(letters.find(letter) + step) % letters_len]
+    tkinter.messagebox.showinfo('Result', output_text)
 
 
 # Шифр Виженера(шифровка/расшифровка)
 def to_Vigenere_en():
     usage = combo2.get().lower()
-    strk = txt2.get(1.0, tkinter.END).lower()
+    input_text = txt2.get(1.0, tkinter.END).lower()
     keyy = (step2.get()).lower()
     flag = 1
     if not keyy.isalpha():
@@ -43,22 +43,22 @@ def to_Vigenere_en():
         flag *= -1
     global letters
     global letters_len
-    new_strk = ''
-    for j, i in enumerate(strk):
-        if i not in letters:
-            new_strk += i
+    output_text = ''
+    for j, letter in enumerate(input_text):
+        if letter not in letters:
+            output_text += letter
         else:
-            new_strk += letters[(letters.find(i) + flag * letters.find(keyy[j % len_k])) % letters_len]
-    tkinter.messagebox.showinfo('Result', new_strk)
+            output_text += letters[(letters.find(letter) + flag * letters.find(keyy[j % len_k])) % letters_len]
+    tkinter.messagebox.showinfo('Result', output_text)
 
 
 # Шифр Вернама(шифровка/расшифровка)
 def to_Vernam_en():
     usage = combo3.get().lower()
-    strk = txt3.get(1.0, tkinter.END).lower()
+    input_text = txt3.get(1.0, tkinter.END).lower()
     keyy = step3.get().lower()
     flag = 1
-    if len(keyy) != len(strk) - 1:
+    if len(keyy) != len(input_text) - 1:
         tkinter.messagebox.showerror('Error', 'Wrong input')
         return
     len_k = len(keyy)
@@ -66,13 +66,13 @@ def to_Vernam_en():
         flag *= -1
     global letters
     global letters_len
-    new_strk = ''
-    for j, i in enumerate(strk):
-        if i not in letters:
-            new_strk += i
+    output_text = ''
+    for j, letter in enumerate(input_text):
+        if letter not in letters:
+            output_text += letter
         else:
-            new_strk += letters[(letters.find(i) + flag * letters.find(keyy[j])) % letters_len]
-    tkinter.messagebox.showinfo('Result', new_strk)
+            output_text += letters[(letters.find(letter) + flag * letters.find(keyy[j])) % letters_len]
+    tkinter.messagebox.showinfo('Result', output_text)
 
 
 # Создание окна
