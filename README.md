@@ -4,8 +4,7 @@
 </blockquote>
 <h1 id="-">Гайд по запуску</h1>
 <h3 id="-python-"><strong>Первый этап: установка python и нужных библиотек</strong></h3>
-    <details>
-  <summary><h5 id="-python3-pygame-">Если у вас уже установлен python3 и вы можете самостоятельно установить библиотеку tkinter
+    <details><summary><h5 id="-python3-pygame-">Если у вас уже установлен python3 и вы можете самостоятельно установить библиотеку tkinter
       — пропустите этот этап</h5></summary>
   <p><strong>1. Скачайте python3 с официального <a href="https://www.python.org/downloads/">сайта</a> и установите его.</strong>
     <strong>2. Во время установки <em>обязательно</em> поставьте галочку "Add Python 3.x to PATH".</strong></p>
