@@ -5,6 +5,8 @@ from tkinter import ttk
 
 letters = string.ascii_lowercase
 letters_len = len(letters)
+font = ('Arial Bold', 20)
+encrypt_decrypt = ('Зашифровать', 'Расшифровать')
 
 
 # Шифр Цезаря(шифровка/расшифровка)
@@ -75,60 +77,89 @@ def to_Vernam_en():
     tkinter.messagebox.showinfo('Result', output_text)
 
 
+def create_button(cmd):
+    if cmd == 'caesar':
+        return tkinter.Button(window, text='Начать', command=to_Caesar_en)
+    elif cmd == 'vigenere':
+        return tkinter.Button(window, text='Начать', command=to_Vigenere_en)
+    elif cmd == 'vernam':
+        return tkinter.Button(window, text='Начать', command=to_Vernam_en)
+
+
+def create_combobox():
+    global font
+    return ttk.Combobox(window, text='Зашифровать', font=font)
+
+
+def create_entry():
+    return tkinter.Entry(window, width=10)
+
+
+def create_label(text, font_usage=0):
+    if font_usage == 1:
+        global font
+        return tkinter.Label(window, text=text, font=font)
+    return tkinter.Label(window, text=text)
+
+
+def create_text():
+    return tkinter.Text(window, width=50, height=10, wrap=tkinter.WORD)
+
+
 # Создание окна
 window = tkinter.Tk()
 window.title('Ciphers')
-window.geometry('950x600')
+window.geometry('950x600+100+50')
 window.resizable(False, False)
 
 # Блок с шифром Цезаря
-name1 = tkinter.Label(window, text='Шифр Цезаря')
+name1 = create_label('Шифр Цезаря')
 name1.grid(column=0, row=0, columnspan=2)
-combo1 = ttk.Combobox(window, text='Зашифровать', font=('Arial Bold', 20))
-combo1['values'] = ('Зашифровать', 'Расшифровать')
+combo1 = create_combobox()
+combo1['values'] = encrypt_decrypt
 combo1.current(0)
 combo1.grid(column=0, row=1, columnspan=2)
-txt1 = tkinter.Text(window, width=50, height=10, wrap=tkinter.WORD)
+txt1 = create_text()
 txt1.grid(column=0, row=2, columnspan=2)
-lbl1 = tkinter.Label(window, text='с шагом', font=('Arial bold', 20))
+lbl1 = create_label('с шагом', 1)
 lbl1.grid(column=0, row=3)
-step1 = tkinter.Entry(window, width=10)
+step1 = create_entry()
 step1.grid(column=1, row=3)
-btn1 = tkinter.Button(window, text='Начать', command=to_Caesar_en)
+btn1 = create_button('caesar')
 btn1.grid(column=0, row=4)
 
 # Разделитель между блоками
-whitespace1 = tkinter.Label(window, text='                          ')
+whitespace1 = create_label('                          ')
 whitespace1.grid(column=3, row=0, rowspan=4, columnspan=4)
 
 # Блок с шифром Виженера
-name2 = tkinter.Label(window, text='Шифр Виженера')
+name2 = create_label('Шифр Виженера')
 name2.grid(column=7, row=0, columnspan=2)
-combo2 = ttk.Combobox(window, text='Зашифровать', font=('Arial Bold', 20))
-combo2['values'] = ('Зашифровать', 'Расшифровать')
+combo2 = create_combobox()
+combo2['values'] = encrypt_decrypt
 combo2.current(0)
 combo2.grid(column=7, row=1, columnspan=2)
-txt2 = tkinter.Text(window, width=50, height=10, wrap=tkinter.WORD)
+txt2 = create_text()
 txt2.grid(column=7, row=2, columnspan=2)
-lbl2 = tkinter.Label(window, text='с ключом', font=('Arial bold', 20))
+lbl2 = create_label('с ключом', 1)
 lbl2.grid(column=7, row=3)
-step2 = tkinter.Entry(window, width=20)
+step2 = create_entry()
 step2.grid(column=8, row=3)
-btn2 = tkinter.Button(window, text='Начать', command=to_Vigenere_en)
+btn2 = create_button('vigenere')
 btn2.grid(column=7, row=4)
 
 # Блок с шифром Вернама
-name3 = tkinter.Label(window, text='Шифр Вернама')
+name3 = create_label('Шифр Вернама')
 name3.grid(column=0, row=6, columnspan=2)
-combo3 = ttk.Combobox(window, text='Зашифровать', font=('Arial Bold', 20))
-combo3['values'] = ('Зашифровать', 'Расшифровать')
+combo3 = create_combobox()
+combo3['values'] = encrypt_decrypt
 combo3.current(0)
 combo3.grid(column=0, row=7, columnspan=2)
-txt3 = tkinter.Text(window, width=50, height=10, wrap=tkinter.WORD)
+txt3 = create_text()
 txt3.grid(column=0, row=8, columnspan=2)
-lbl3 = tkinter.Label(window, text='с кодом', font=('Arial bold', 20))
+lbl3 = create_label('с шагом', 1)
 lbl3.grid(column=0, row=9)
-step3 = tkinter.Entry(window, width=10)
+step3 = create_entry()
 step3.grid(column=1, row=9)
-btn3 = tkinter.Button(window, text='Начать', command=to_Vernam_en)
+btn3 = create_button('vernam')
 btn3.grid(column=0, row=10)
