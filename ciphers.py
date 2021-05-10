@@ -52,8 +52,9 @@ def rand_key(seed, len_of_key):
     :param len_of_key: длина необходимого ключа
     :return:
     '''
+    global letters_en
     random.seed(seed)
-    return ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for i in range(len_of_key))
+    return ''.join(random.choice(letters_en) for i in range(len_of_key))
 
 
 def caesar(args):
@@ -114,17 +115,17 @@ def vigenere(args):
         spase_couner = 0
         for line in usr_file.readlines():
             new_txt = ''
-            for j, i in enumerate(line.lower()):
-                if i == ' ':
+            for j, symbol in enumerate(line.lower()):
+                if symbol == ' ':
                     spase_couner += 1
-                if i not in letters_en and i not in letters_ru:
-                    new_txt += i
-                elif i in letters_ru:
+                if symbol not in letters_en and symbol not in letters_ru:
+                    new_txt += symbol
+                elif symbol in letters_ru:
                     new_txt += letters_ru[
-                        (letters_ru.find(i) + step * letters_ru.find(args.key[(j - spase_couner) % len_key])) % len_ru]
+                        (letters_ru.find(symbol) + step * letters_ru.find(args.key[(j - spase_couner) % len_key])) % len_ru]
                 else:
                     new_txt += letters_en[
-                        (letters_en.find(i) + step * letters_en.find(args.key[(j - spase_couner) % len_key])) % len_en]
+                        (letters_en.find(symbol) + step * letters_en.find(args.key[(j - spase_couner) % len_key])) % len_en]
             cipher.write(new_txt)
     usr_file.close()
     return 'Result in ' + args.outdir
@@ -155,13 +156,13 @@ def vernam(args):
             new_txt = ''
             if i == ' ':
                 spase_couner += 1
-            for j, i in enumerate(line.lower()):
-                if i not in letters_en and i not in letters_ru:
-                    new_txt += i
-                elif i in letters_ru:
-                    new_txt += letters_ru[(letters_ru.find(i) + step * letters_en.find(gen_str[j - spase_couner])) % len_ru]
+            for j, symbol in enumerate(line.lower()):
+                if symbol not in letters_en and symbol not in letters_ru:
+                    new_txt += symbol
+                elif symbol in letters_ru:
+                    new_txt += letters_ru[(letters_ru.find(symbol) + step * letters_en.find(gen_str[j - spase_couner])) % len_ru]
                 else:
-                    new_txt += letters_en[(letters_en.find(i) + step * letters_en.find(gen_str[j - spase_couner])) % len_en]
+                    new_txt += letters_en[(letters_en.find(symbol) + step * letters_en.find(gen_str[j - spase_couner])) % len_en]
             cipher.write(new_txt)
     usr_file.close()
     return 'Result in ' + args.outdir
@@ -197,13 +198,13 @@ def caesar_crack(args):
         with open(args.outdir, 'w') as cipher:
             for line in usr_file.readlines():
                 new_txt = ''
-                for i in line.lower():
-                    if i not in letters_en and i not in letters_ru:
-                        new_txt += i
-                    elif i in letters_ru:
-                        new_txt += letters_ru[(letters_ru.find(i) - step) % len_ru]
+                for symbol in line.lower():
+                    if symbol not in letters_en and symbol not in letters_ru:
+                        new_txt += symbol
+                    elif symbol in letters_ru:
+                        new_txt += letters_ru[(letters_ru.find(symbol) - step) % len_ru]
                     else:
-                        new_txt += letters_en[(letters_en.find(i) - step) % len_en]
+                        new_txt += letters_en[(letters_en.find(symbol) - step) % len_en]
                 cipher.write(new_txt)
     return 'Result in ' + args.outdir
 
