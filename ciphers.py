@@ -171,8 +171,6 @@ def caesar_crack(args):
         """
     global letters_en
     global letters_ru
-    len_en = len(letters_en)
-    len_ru = len(letters_ru)
     with open(args.indir, 'r') as file:
         ammount = Counter()
         for line in file.readlines():
@@ -184,24 +182,13 @@ def caesar_crack(args):
     if most_c == ' ':
         most_c = ammount.most_common(2)[1][0]
     if most_c in letters_ru:
-        step = letters_ru.find(most_c) - letters_ru.find('о')
+        args.key = letters_ru.find(most_c) - letters_ru.find('о')
     elif most_c in letters_en:
-        step = letters_en.find(most_c) - letters_en.find('e')
+        args.key = letters_en.find(most_c) - letters_en.find('e')
     else:
         return 'Too many special characters'
-    with open(args.indir, 'r') as usr_file:
-        with open(args.outdir, 'w') as cipher:
-            for line in usr_file.readlines():
-                new_txt = ''
-                for symbol in line.lower():
-                    if symbol not in letters_en and symbol not in letters_ru:
-                        new_txt += symbol
-                    elif symbol in letters_ru:
-                        new_txt += letters_ru[(letters_ru.find(symbol) - step) % len_ru]
-                    else:
-                        new_txt += letters_en[(letters_en.find(symbol) - step) % len_en]
-                cipher.write(new_txt)
-    return 'Result in ' + args.outdir
+    args.en_de = 'de'
+    return caesar(args)
 
 
 def res(user_params):
