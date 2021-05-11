@@ -246,4 +246,3 @@ window.resizable(False, False)
 name1, combo1, txt1, lbl1, step1, btn1 = create_block(first_block_info, True)
 name2, combo2, txt2, lbl2, step2, btn2 = create_block(second_block_info)
 name3, combo3, txt3, lbl3, step3, btn3 = create_block(third_block_info)
-
