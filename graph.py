@@ -22,7 +22,7 @@ def to_caesar_en():
     try:
         step = int(step1.get())
     except ValueError:
-        tkinter.messagebox.showerror('Error', 'Wrong input')
+        messagebox.showerror('Error', 'Wrong input')
         return
     if usage == 'Расшифровать':
         step *= -1
@@ -34,7 +34,7 @@ def to_caesar_en():
             output_text += letter
         else:
             output_text += letters[(letters.find(letter) + step) % letters_len]
-    tkinter.messagebox.showinfo('Result', output_text)
+    messagebox.showinfo('Result', output_text)
 
 
 def to_vigenere_en():
@@ -47,7 +47,7 @@ def to_vigenere_en():
     keyy = (step2.get()).lower()
     flag = 1
     if not keyy.isalpha():
-        tkinter.messagebox.showerror('Error', 'Wrong input')
+        messagebox.showerror('Error', 'Wrong input')
         return
     len_k = len(keyy)
     if usage == 'Расшифровать':
@@ -60,7 +60,7 @@ def to_vigenere_en():
             output_text += letter
         else:
             output_text += letters[(letters.find(letter) + flag * letters.find(keyy[j % len_k])) % letters_len]
-    tkinter.messagebox.showinfo('Result', output_text)
+    messagebox.showinfo('Result', output_text)
 
 
 def to_vernam_en():
@@ -73,7 +73,7 @@ def to_vernam_en():
     key = step3.get().lower()
     flag = 1
     if len(key) != len(input_text) - 1:
-        tkinter.messagebox.showerror('Error', 'Wrong input')
+        messagebox.showerror('Error', 'Wrong input')
         return
     if usage == 'Расшифровать':
         flag *= -1
@@ -85,7 +85,7 @@ def to_vernam_en():
             output_text += letter
         else:
             output_text += letters[(letters.find(letter) + flag * letters.find(key[i])) % letters_len]
-    tkinter.messagebox.showinfo('Result', output_text)
+    messagebox.showinfo('Result', output_text)
 
 
 def create_button(cmd):
@@ -200,7 +200,6 @@ def grid_label(text, font_usage, col, row, cols=1, rows=1):
     """
     name = create_label(text, font_usage)
     name.grid(column=col, row=row, columnspan=cols, rowspan=rows)
-    print(type(name))
     return name
 
 
@@ -247,3 +246,4 @@ window.resizable(False, False)
 name1, combo1, txt1, lbl1, step1, btn1 = create_block(first_block_info, True)
 name2, combo2, txt2, lbl2, step2, btn2 = create_block(second_block_info)
 name3, combo3, txt3, lbl3, step3, btn3 = create_block(third_block_info)
+window.mainloop()
