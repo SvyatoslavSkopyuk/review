@@ -3,10 +3,9 @@
   <p>Шифратор - программа для шифрования текста несколькими способами, которые будут описаны ниже.</p>
 </blockquote>
 <h1 id="-">Гайд по запуску</h1>
-<details>
-  <summary><h3 id="-python-"><strong>Первый этап: установка python и нужных библиотек</strong></h3>
-    <h5 id="-python3-pygame-">Если у вас уже установлен python3 и вы можете самостоятельно установить библиотеку tkinter
-      — пропустите этот этап</h5></summary>
+<h3 id="-python-"><strong>Первый этап: установка python и нужных библиотек</strong></h3>
+    <details><summary><id="-python3-pygame-">Если у вас уже установлен python3 и вы можете самостоятельно установить библиотеку tkinter
+      — пропустите этот этап</summary>
   <p><strong>1. Скачайте python3 с официального <a href="https://www.python.org/downloads/">сайта</a> и установите его.</strong>
     <strong>2. Во время установки <em>обязательно</em> поставьте галочку "Add Python 3.x to PATH".</strong></p>
   <p><img src="https://python-scripts.com/wp-content/uploads/2018/06/win-install-dialog.40e3ded144b0.png"
